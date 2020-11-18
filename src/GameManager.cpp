@@ -28,6 +28,7 @@ unsigned int GameManager::input() {
 }
 
 void GameManager::startGame() {
-  std::unique_ptr<Map> map = std::make_unique<Map>(10,10);
-  
+  std::unique_ptr<Map> map = std::make_unique<Map>(20,10);
+
+  system("PAUSE");
 };

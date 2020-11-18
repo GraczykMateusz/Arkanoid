@@ -8,12 +8,11 @@ class Map {
   private:
     //Variables
     int xSize, ySize;
-    std::vector<std::vector<int>> map;
+    std::vector<std::vector<char>> map;
 
   public:
     //Constructor and destuctor
-    Map(unsigned int widthX, unsigned int heightY)
-      : xSize(widthX), ySize(heightY){};
+    Map(const unsigned int xSize, const unsigned int ySize);
     ~Map() = default;
 
     //Methods
