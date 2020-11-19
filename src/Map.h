@@ -17,6 +17,8 @@ class Map {
     void display2() const;
     void display1() const;
 
+    void waitSec(const unsigned int time = 1) const;
+
   public:
     //Constructor and destuctor
     Map(const unsigned int xSize, const unsigned int ySize);
