@@ -86,6 +86,14 @@ void Map::startTimer() const {
   systemClear();
 }
 
+void Map::setPlatform(const std::vector<char> platformVec, const int positionX, const int positionY) {
+  std::cout << positionX << std::endl;
+  std::cout << positionX << std::endl;
+
+  for(auto& x : platformVec)
+    std::cout << x << std::endl;
+}
+
 void Map::display3() const {
   std::cout << "########################################\n"
             << "#                                      #\n"

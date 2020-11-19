@@ -4,7 +4,7 @@
 #include <vector>
 
 class Map {
-  /*The class is responsible for everything */
+  /*The class is responsible for everything connected with creating and displaying map*/
   private:
     //Variables
     int xSize, ySize;
@@ -26,8 +26,11 @@ class Map {
 
     //Methods
     void display() const;
+    void setPlatform(const std::vector<char> platformVec,
+                     const int positionX,
+                     const int positionY);
 
-    void startTimer() const; 
+    void startTimer() const;
 };
 
 #endif /*MAP_H*/
