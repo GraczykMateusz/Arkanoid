@@ -5,7 +5,8 @@
 #include "systemClear.h"
 #include "Map.h"
 
-Map::Map(const unsigned int xSize, const unsigned int ySize) {
+Map::Map(const unsigned int xSize,
+         const unsigned int ySize) {
   this->xSize = xSize;
   this->ySize = ySize;
  
@@ -20,11 +21,11 @@ void Map::create() {
 
   for(int y = 0; y < ySize; ++y) {
     for(int x = 0; x < xSize; ++x) {
-      //First and last lines
+      //First and last rows
       if(row == 0 || row == ySize -1) {
         map[y][x] = '#';
       } else {
-        //First and last column
+        //First and last columns
         if(column == 0 || column == xSize - 1) {
           map[y][x] = '#';
         } else {
@@ -40,7 +41,8 @@ void Map::create() {
 
 void Map::display() const {
   system("stty cooked");
-  
+  std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
   std::cout << '\n';
 
   int row = 0;
@@ -48,11 +50,11 @@ void Map::display() const {
 
   for(int y = 0; y < ySize; ++y) {
     for(int x = 0; x < xSize; ++x) {
-      //First and last lines
+      //First and last rows
       if(row == 0 || row == ySize -1) {
         std::cout << map[y][x];
       } else {
-        //First and last column
+        //First and last columns
         if(column == 0 || column == xSize - 1) {
           std::cout << map[y][x];
         } else {
@@ -65,7 +67,10 @@ void Map::display() const {
     column = 0;
     ++row;
   }
-  //system("stty raw");
+  std::cout << "Move (Left -> 4 / Right -> 6):";
+  std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
+  system("stty raw");
 }
 
 void Map::startTimer() const {
@@ -86,12 +91,26 @@ void Map::startTimer() const {
   systemClear();
 }
 
-void Map::setPlatform(const std::vector<char> platformVec, const int positionX, const int positionY) {
-  std::cout << positionX << std::endl;
-  std::cout << positionX << std::endl;
+void Map::removePlatform(const std::vector<char> platformVec,
+                         const int positionX,
+                         const int positionY) {
+  int currentPositionX = positionX;
 
-  for(auto& x : platformVec)
-    std::cout << x << std::endl;
+  for(auto& c : platformVec) {
+    map[positionY][currentPositionX] = ' ';
+    ++currentPositionX;
+  }
+}
+
+void Map::setPlatform(const std::vector<char> platformVec,
+                      const int positionX,
+                      const int positionY) {
+  int currentPositionX = positionX;
+
+  for(auto& c : platformVec) {
+    map[positionY][currentPositionX] = c;
+    ++currentPositionX;
+  }
 }
 
 void Map::display3() const {

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <memory>
+#include <thread>
 
 #include "GameManager.h"
 #include "Keyboard.h"
@@ -21,7 +22,10 @@ unsigned int GameManager::input() {
   std::string sInput;
   char cInput;
 
+  system("stty cooked");
   std::cout << "Select: ";
+  system("stty raw");
+
   sInput = getchar();
 
   try {
@@ -35,15 +39,31 @@ unsigned int GameManager::input() {
 void GameManager::startGame() {
   std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
   std::unique_ptr<Map> map = std::make_unique<Map>(X,Y);
-  std::unique_ptr<Platform> platform = std::make_unique<Platform>();
-
-  //map->startTimer(); 
-  //map->display();
+  std::unique_ptr<Platform> platform = std::make_unique<Platform>(X);
+  
+  map->startTimer(); 
 
   map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
 
-  int stop;
-  std::cin >> stop; 
+  map->display();
+ 
+  do {
+    map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
 
-  system("PAUSE");
+    map->display();
+    
+    if(kb->checkPressedKey() == "4")
+    {
+      map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
+      platform->moveLeft();
+    }
+    if(kb->checkPressedKey() == "6") {
+      map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
+      platform->moveRight();
+    }
+  } while(true);
+  //int stop;
+  //std::cin >> stop; 
+
+  //system("PAUSE");
 };

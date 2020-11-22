@@ -4,7 +4,8 @@
 #include <vector>
 
 class Map {
-  /*The class is responsible for everything connected with creating and displaying map*/
+  /*The class is responsible for everything
+   connected with creating and displaying map*/
   private:
     //Variables
     int xSize, ySize;
@@ -21,7 +22,8 @@ class Map {
 
   public:
     //Constructor and destuctor
-    Map(const unsigned int xSize, const unsigned int ySize);
+    Map(const unsigned int xSize,
+        const unsigned int ySize);
     ~Map() = default;
 
     //Methods
@@ -29,6 +31,12 @@ class Map {
     void setPlatform(const std::vector<char> platformVec,
                      const int positionX,
                      const int positionY);
+
+    void removePlatform(const std::vector<char> platformVec,
+                        const int positionX,
+                        const int positionY);
+
+    const int& getXSize() { return xSize; }
 
     void startTimer() const;
 };

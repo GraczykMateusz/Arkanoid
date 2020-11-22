@@ -1,16 +1,15 @@
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
-#include <thread>
+#include <string>
 
 class Keyboard {
-  std::thread t1; 
-  
+  std::string pressedKey;
   public:
     Keyboard() = default;
     ~Keyboard() = default;
 
-    char get_key();
+    const std::string checkPressedKey();
 };
 
 #endif /*KEYBOARD_H*/
