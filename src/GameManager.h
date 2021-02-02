@@ -2,6 +2,8 @@
 #define GAMEMANAGER_H
 
 class GameManager {
+  bool exit = false;
+
   public:
     GameManager() = default;
     ~GameManager() = default;
@@ -9,5 +11,8 @@ class GameManager {
     void menu();
     unsigned int input();
     void startGame();
+
+    void setExit(bool exit) { this->exit = exit; }
+    const bool getExit() const { return exit; } 
 };
 #endif /*GameManager.h*/

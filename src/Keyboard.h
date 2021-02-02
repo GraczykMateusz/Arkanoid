@@ -4,12 +4,13 @@
 #include <string>
 
 class Keyboard {
-  std::string pressedKey;
+  int pressedKey;
   public:
-    Keyboard() = default;
+    Keyboard();
     ~Keyboard() = default;
 
-    const std::string checkPressedKey();
+    void checkPressedKey();
+    int getPressedKey() const { return pressedKey; }
 };
 
 #endif /*KEYBOARD_H*/

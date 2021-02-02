@@ -1,8 +1,8 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <ncurses.h>
 
-#include "systemClear.h"
 #include "Map.h"
 
 Map::Map(const unsigned int xSize,
@@ -10,7 +10,7 @@ Map::Map(const unsigned int xSize,
   this->xSize = xSize;
   this->ySize = ySize;
  
-  map.resize(xSize, std::vector<char>(ySize));
+  map.resize(xSize, std::vector<const char*>(ySize));
 
   create();
 }
@@ -19,17 +19,20 @@ void Map::create() {
   int row = 0;
   int column = 0;
 
+  const char* hash = "#";
+  const char* blank = " ";
+
   for(int y = 0; y < ySize; ++y) {
     for(int x = 0; x < xSize; ++x) {
       //First and last rows
       if(row == 0 || row == ySize -1) {
-        map[y][x] = '#';
+        map[y][x] = hash;
       } else {
         //First and last columns
         if(column == 0 || column == xSize - 1) {
-          map[y][x] = '#';
+          map[y][x] = hash;
         } else {
-          map[y][x] = ' ';
+          map[y][x] = blank;
         }
       }
       ++column;
@@ -40,10 +43,9 @@ void Map::create() {
 }
 
 void Map::display() const {
-  system("stty cooked");
   std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
-  std::cout << '\n';
+  printw("\n");
 
   int row = 0;
   int column = 0;
@@ -52,57 +54,57 @@ void Map::display() const {
     for(int x = 0; x < xSize; ++x) {
       //First and last rows
       if(row == 0 || row == ySize -1) {
-        std::cout << map[y][x];
+        printw(map[y][x]);
       } else {
         //First and last columns
         if(column == 0 || column == xSize - 1) {
-          std::cout << map[y][x];
+          printw(map[y][x]);
         } else {
-          std::cout << map[y][x];
+          printw(map[y][x]);
         }
       }
       ++column;
     }
-    std::cout << '\n';
+    printw("\n");
     column = 0;
     ++row;
   }
-  std::cout << "Move (Left -> 4 / Right -> 6):";
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-  system("stty raw");
+  printw("Move (Left -> 4 / Right -> 6):");
+  std::this_thread::sleep_for(std::chrono::seconds(1000));
 }
 
 void Map::startTimer() const {
-  system("stty cooked");
-  systemClear();
+  clear();
   waitSec();
 
   display3();
+  refresh();
   waitSec();
-  systemClear();
+  clear();
 
   display2();
+  refresh();
   waitSec();
-  systemClear();
+  clear();
 
   display1();
+  refresh();
   waitSec();
-  systemClear();
+  clear();  
 }
 
-void Map::removePlatform(const std::vector<char> platformVec,
+void Map::removePlatform(const std::vector<const char*> platformVec,
                          const int positionX,
                          const int positionY) {
   int currentPositionX = positionX;
 
   for(auto& c : platformVec) {
-    map[positionY][currentPositionX] = ' ';
+    map[positionY][currentPositionX] = " ";
     ++currentPositionX;
   }
 }
 
-void Map::setPlatform(const std::vector<char> platformVec,
+void Map::setPlatform(const std::vector<const char*> platformVec,
                       const int positionX,
                       const int positionY) {
   int currentPositionX = positionX;
@@ -114,88 +116,88 @@ void Map::setPlatform(const std::vector<char> platformVec,
 }
 
 void Map::display3() const {
-  std::cout << "########################################\n"
-            << "#                                      #\n"
-            << "#                                      #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#                       ########       #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#                                      #\n"
-            << "#                                      #\n"
-            << "########################################\n";
+  printw("########################################\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#                       ########       #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("########################################\n");
 }
 
 void Map::display2() const {
-  std::cout << "########################################\n"
-            << "#                                      #\n"
-            << "#                                      #\n"
-            << "#              ###########             #\n"
-            << "#            ###############           #\n"
-            << "#           #################          #\n"
-            << "#         ######         ######        #\n"
-            << "#        ######           ######       #\n"
-            << "#        #####             #####       #\n"
-            << "#        #####             #####       #\n"
-            << "#                         #####        #\n"
-            << "#                       #####          #\n"
-            << "#                     ######           #\n"
-            << "#                   ######             #\n"
-            << "#                 ######               #\n"
-            << "#              #######                 #\n"
-            << "#             ######                   #\n"
-            << "#           ######                     #\n"
-            << "#          ######                      #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#         ######################       #\n"
-            << "#                                      #\n"
-            << "#                                      #\n"
-            << "########################################\n";
+  printw("########################################\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#              ###########             #\n");
+  printw("#            ###############           #\n");
+  printw("#           #################          #\n");
+  printw("#         ######         ######        #\n");
+  printw("#        ######           ######       #\n");
+  printw("#        #####             #####       #\n");
+  printw("#        #####             #####       #\n");
+  printw("#                         #####        #\n");
+  printw("#                       #####          #\n");
+  printw("#                     ######           #\n");
+  printw("#                   ######             #\n");
+  printw("#                 ######               #\n");
+  printw("#              #######                 #\n");
+  printw("#             ######                   #\n");
+  printw("#           ######                     #\n");
+  printw("#          ######                      #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("########################################\n");
             
 }
 
 void Map::display1() const {
-  std::cout << "########################################\n"
-            << "#                                      #\n"
-            << "#                                      #\n"
-            << "#                ###########           #\n"
-            << "#              #############           #\n"
-            << "#             ##############           #\n"
-            << "#           ################           #\n"
-            << "#         ##################           #\n"
-            << "#        ###################           #\n"
-            << "#       ####################           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                 ##########           #\n"
-            << "#                                      #\n"
-            << "#                                      #\n"
-            << "########################################\n";
+  printw("########################################\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                ###########           #\n");
+  printw("#              #############           #\n");
+  printw("#             ##############           #\n");
+  printw("#           ################           #\n");
+  printw("#         ##################           #\n");
+  printw("#        ###################           #\n");
+  printw("#       ####################           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                 ##########           #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("########################################\n");
 }
 
 void Map::waitSec(const unsigned int time) const {

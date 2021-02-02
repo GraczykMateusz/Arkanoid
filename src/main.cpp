@@ -1,22 +1,21 @@
 #include <iostream>
 #include <memory>
+#include <ncurses.h>
 
 #include "GameManager.h"
-#include "systemClear.h"
 
 int main() {
-  system("stty raw");
+  initscr();
   std::unique_ptr<GameManager> gameManager = std::make_unique<GameManager>();
   
   while(true) {
-    systemClear();
     gameManager->menu();  
     switch(gameManager->input()) {
       case 1:
         gameManager->startGame();
         break;
       case 2:
-        system("stty cooked");
+        endwin();
         return 0;
         break;
       default:

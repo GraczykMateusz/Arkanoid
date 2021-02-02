@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 #include <thread>
+#include <ncurses.h>
 
 #include "GameManager.h"
 #include "Keyboard.h"
@@ -11,22 +12,18 @@
 #include "Map.h"
 
 void GameManager::menu() {
-  system("stty cooked");
-  std::cout << "The Arkanoid Game" << std::endl; 
-  std::cout << "1. Start\n";
-  std::cout << "2. Exit\n";
-  system("stty raw");
+  printw("The Arkanoid Game\n"); 
+  printw("1. Start\n");
+  printw("2. Exit\n");
 }
 
 unsigned int GameManager::input() {
   std::string sInput;
   char cInput;
 
-  system("stty cooked");
-  std::cout << "Select: ";
-  system("stty raw");
+  printw("Select: ");
 
-  sInput = getchar();
+  sInput = getch();
 
   try {
     cInput = std::stoi(sInput);
@@ -52,18 +49,18 @@ void GameManager::startGame() {
 
     map->display();
     
-    if(kb->checkPressedKey() == "4")
+    if(kb->getPressedKey() == 52)
     {
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveLeft();
     }
-    if(kb->checkPressedKey() == "6") {
+    if(kb->getPressedKey() == 54) {
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveRight();
     }
-  } while(true);
-  //int stop;
-  //std::cin >> stop; 
-
-  //system("PAUSE");
+    if(kb->getPressedKey() == 27) {
+      setExit(true);
+    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+  } while(!getExit());
 };

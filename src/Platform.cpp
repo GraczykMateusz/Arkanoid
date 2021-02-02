@@ -1,10 +1,10 @@
 #include "Platform.h"
 
 Platform::Platform(const unsigned int mapX) {
-    this->mapX = mapX;
+    rightFrame = mapX;
 }
 
-std::vector<char>& Platform::getPlatform() {
+std::vector<const char*>& Platform::getPlatform() {
     return platformVec;
 }
 
@@ -17,7 +17,7 @@ const int Platform::getPositionY() const {
 }
 
 void Platform::moveRight() {
-    if(positionX < mapX - platformVec.size() - 1)
+    if(positionX < rightFrame - platformVec.size() - 1)
         ++positionX;
 }
 

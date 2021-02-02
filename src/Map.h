@@ -9,7 +9,7 @@ class Map {
   private:
     //Variables
     int xSize, ySize;
-    std::vector<std::vector<char>> map;
+    std::vector<std::vector<const char*>> map;
 
     //Methods
     void create();
@@ -28,11 +28,11 @@ class Map {
 
     //Methods
     void display() const;
-    void setPlatform(const std::vector<char> platformVec,
+    void setPlatform(const std::vector<const char*> platformVec,
                      const int positionX,
                      const int positionY);
 
-    void removePlatform(const std::vector<char> platformVec,
+    void removePlatform(const std::vector<const char*> platformVec,
                         const int positionX,
                         const int positionY);
 
