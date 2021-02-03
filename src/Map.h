@@ -2,6 +2,11 @@
 #define MAP_H
 
 #include <vector>
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <ncurses.h>
+#include <string>
 
 class Map {
   /*The class is responsible for everything
@@ -9,7 +14,10 @@ class Map {
   private:
     //Variables
     int xSize, ySize;
-    std::vector<std::vector<const char*>> map;
+    std::vector<std::vector<std::string>> map;
+
+    std::string hash = "#";
+    std::string blank = " ";
 
     //Methods
     void create();
@@ -18,7 +26,7 @@ class Map {
     void display2() const;
     void display1() const;
 
-    void waitSec(const unsigned int time = 1) const;
+    void waitMillisec(const unsigned int time) const;
 
   public:
     //Constructor and destuctor
@@ -27,12 +35,12 @@ class Map {
     ~Map() = default;
 
     //Methods
-    void display() const;
-    void setPlatform(const std::vector<const char*> platformVec,
+    void display();
+    void setPlatform(const std::vector<std::string> platformVec,
                      const int positionX,
                      const int positionY);
 
-    void removePlatform(const std::vector<const char*> platformVec,
+    void removePlatform(const std::vector<std::string> platformVec,
                         const int positionX,
                         const int positionY);
 

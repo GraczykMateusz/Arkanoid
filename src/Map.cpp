@@ -1,8 +1,3 @@
-#include <iostream>
-#include <thread>
-#include <chrono>
-#include <ncurses.h>
-
 #include "Map.h"
 
 Map::Map(const unsigned int xSize,
@@ -10,7 +5,7 @@ Map::Map(const unsigned int xSize,
   this->xSize = xSize;
   this->ySize = ySize;
  
-  map.resize(xSize, std::vector<const char*>(ySize));
+  map.resize(ySize, std::vector<std::string>(xSize));
 
   create();
 }
@@ -18,9 +13,6 @@ Map::Map(const unsigned int xSize,
 void Map::create() {  
   int row = 0;
   int column = 0;
-
-  const char* hash = "#";
-  const char* blank = " ";
 
   for(int y = 0; y < ySize; ++y) {
     for(int x = 0; x < xSize; ++x) {
@@ -42,25 +34,23 @@ void Map::create() {
   }
 }
 
-void Map::display() const {
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-  printw("\n");
-
+void Map::display() {
   int row = 0;
   int column = 0;
+
+  clear();
 
   for(int y = 0; y < ySize; ++y) {
     for(int x = 0; x < xSize; ++x) {
       //First and last rows
       if(row == 0 || row == ySize -1) {
-        printw(map[y][x]);
+        printw(map[y][x].data());
       } else {
         //First and last columns
         if(column == 0 || column == xSize - 1) {
-          printw(map[y][x]);
+          printw(map[y][x].data());
         } else {
-          printw(map[y][x]);
+          printw(map[y][x].data());
         }
       }
       ++column;
@@ -69,31 +59,21 @@ void Map::display() const {
     column = 0;
     ++row;
   }
-  printw("Move (Left -> 4 / Right -> 6):");
-  std::this_thread::sleep_for(std::chrono::seconds(1000));
+  refresh();
 }
 
 void Map::startTimer() const {
-  clear();
-  waitSec();
-
   display3();
-  refresh();
-  waitSec();
-  clear();
+  waitMillisec(1000);
 
   display2();
-  refresh();
-  waitSec();
-  clear();
+  waitMillisec(1000);
 
   display1();
-  refresh();
-  waitSec();
-  clear();  
+  waitMillisec(1000);
 }
 
-void Map::removePlatform(const std::vector<const char*> platformVec,
+void Map::removePlatform(const std::vector<std::string> platformVec,
                          const int positionX,
                          const int positionY) {
   int currentPositionX = positionX;
@@ -104,7 +84,7 @@ void Map::removePlatform(const std::vector<const char*> platformVec,
   }
 }
 
-void Map::setPlatform(const std::vector<const char*> platformVec,
+void Map::setPlatform(const std::vector<std::string> platformVec,
                       const int positionX,
                       const int positionY) {
   int currentPositionX = positionX;
@@ -116,6 +96,8 @@ void Map::setPlatform(const std::vector<const char*> platformVec,
 }
 
 void Map::display3() const {
+  clear();
+
   printw("########################################\n");
   printw("#                                      #\n");
   printw("#                                      #\n");
@@ -141,9 +123,13 @@ void Map::display3() const {
   printw("#                                      #\n");
   printw("#                                      #\n");
   printw("########################################\n");
+  
+  refresh();
 }
 
 void Map::display2() const {
+  clear();
+
   printw("########################################\n");
   printw("#                                      #\n");
   printw("#                                      #\n");
@@ -169,10 +155,13 @@ void Map::display2() const {
   printw("#                                      #\n");
   printw("#                                      #\n");
   printw("########################################\n");
-            
+
+  refresh();
 }
 
 void Map::display1() const {
+  clear();
+
   printw("########################################\n");
   printw("#                                      #\n");
   printw("#                                      #\n");
@@ -198,8 +187,10 @@ void Map::display1() const {
   printw("#                                      #\n");
   printw("#                                      #\n");
   printw("########################################\n");
+
+  refresh();
 }
 
-void Map::waitSec(const unsigned int time) const {
-    std::this_thread::sleep_for(std::chrono::seconds(time));
+void Map::waitMillisec(const unsigned int time) const {
+    std::this_thread::sleep_for(std::chrono::milliseconds(time));
 }

@@ -4,7 +4,7 @@ Platform::Platform(const unsigned int mapX) {
     rightFrame = mapX;
 }
 
-std::vector<const char*>& Platform::getPlatform() {
+std::vector<std::string>& Platform::getPlatform() {
     return platformVec;
 }
 

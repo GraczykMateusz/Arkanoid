@@ -4,6 +4,7 @@
 #define PLATFORM_LENGTH 8
 
 #include <vector>
+#include <string>
 
 class Platform {
     int positionX = 20;
@@ -11,7 +12,7 @@ class Platform {
 
     int rightFrame;
 
-    std::vector<const char*> platformVec = std::vector<const char*>(PLATFORM_LENGTH, "=");
+    std::vector<std::string> platformVec = std::vector<std::string>(PLATFORM_LENGTH, "=");
 
 public:
     Platform(const unsigned int mapX);
@@ -20,7 +21,7 @@ public:
     const int getPositionX() const;
     const int getPositionY() const;
 
-    std::vector<const char*>& getPlatform();
+    std::vector<std::string>& getPlatform();
 
     void moveRight();
     void moveLeft();

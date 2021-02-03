@@ -6,6 +6,7 @@
 
 int main() {
   initscr();
+  noecho();
   std::unique_ptr<GameManager> gameManager = std::make_unique<GameManager>();
   
   while(true) {

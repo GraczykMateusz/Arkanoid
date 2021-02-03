@@ -1,11 +1,6 @@
 #define X 40
 #define Y 25
 
-#include <iostream>
-#include <memory>
-#include <thread>
-#include <ncurses.h>
-
 #include "GameManager.h"
 #include "Keyboard.h"
 #include "Platform.h"
@@ -34,33 +29,39 @@ unsigned int GameManager::input() {
 }
 
 void GameManager::startGame() {
-  std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
+  //std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
   std::unique_ptr<Map> map = std::make_unique<Map>(X,Y);
   std::unique_ptr<Platform> platform = std::make_unique<Platform>(X);
   
-  map->startTimer(); 
+  //map->startTimer(); 
 
   map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
 
   map->display();
  
   do {
-    map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
+    //map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
 
-    map->display();
-    
-    if(kb->getPressedKey() == 52)
+    //map->display();
+    //int c = 52;
+
+    //map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
+    //platform->moveLeft();
+    //map->display();
+
+    /*if(c == 52)
     {
+
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveLeft();
     }
-    if(kb->getPressedKey() == 54) {
+    if(c == 54) {
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveRight();
     }
-    if(kb->getPressedKey() == 27) {
+    if(c == 27) {
       setExit(true);
-    }
-    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+    }*/
   } while(!getExit());
+  //kb->getThread()[0].join();
 };

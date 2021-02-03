@@ -1,6 +1,11 @@
 #ifndef GAMEMANAGER_H
 #define GAMEMANAGER_H
 
+#include <iostream>
+#include <memory>
+#include <thread>
+#include <ncurses.h>
+
 class GameManager {
   bool exit = false;
 
