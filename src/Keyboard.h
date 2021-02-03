@@ -20,7 +20,7 @@ class Keyboard {
     void stopThread();
 
     void checkPressedKey();
-    int getPressedKey() { return Keyboard::pressedKey; }
+    int& getPressedKey() { return pressedKey; }
     std::vector<std::thread>& getThread() { return some_threads; }
 };
 

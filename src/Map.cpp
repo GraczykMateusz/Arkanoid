@@ -18,13 +18,13 @@ void Map::create() {
     for(int x = 0; x < xSize; ++x) {
       //First and last rows
       if(row == 0 || row == ySize -1) {
-        map[y][x] = hash;
+        map[y][x] = "#";
       } else {
         //First and last columns
         if(column == 0 || column == xSize - 1) {
-          map[y][x] = hash;
+          map[y][x] = "#";
         } else {
-          map[y][x] = blank;
+          map[y][x] = " ";
         }
       }
       ++column;
@@ -106,6 +106,14 @@ void Map::setPlatform(const std::vector<std::string> platformVec,
     map[positionY][currentPositionX] = c;
     ++currentPositionX;
   }
+}
+
+void Map::removeBall(const int positionX, const int positionY) {
+
+}
+
+void Map::setBall(const int positionX, const int positionY) {
+
 }
 
 void Map::display3() const {

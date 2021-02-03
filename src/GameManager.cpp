@@ -5,6 +5,7 @@
 #include "Keyboard.h"
 #include "Platform.h"
 #include "Map.h"
+#include "Ball.h"
 
 void GameManager::menu() {
   printw("The Arkanoid Game\n"); 
@@ -32,6 +33,7 @@ void GameManager::startGame() {
   std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
   std::unique_ptr<Map> map = std::make_unique<Map>(X,Y);
   std::unique_ptr<Platform> platform = std::make_unique<Platform>(X);
+  std::unique_ptr<Ball> ball = std::make_unique<Ball>(X,Y);
   
   setExit(false);
  

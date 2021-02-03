@@ -16,9 +16,6 @@ class Map {
     int xSize, ySize;
     std::vector<std::vector<std::string>> map;
 
-    std::string hash = "#";
-    std::string blank = " ";
-
     //Methods
     void create();
 
@@ -43,6 +40,9 @@ class Map {
     void removePlatform(const std::vector<std::string> platformVec,
                         const int positionX,
                         const int positionY);
+
+    void setBall(const int positionX, const int positionY);
+    void removeBall(const int positionX, const int positionY);
 
     const int& getXSize() { return xSize; }
 

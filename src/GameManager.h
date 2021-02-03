@@ -7,7 +7,7 @@
 #include <ncurses.h>
 
 class GameManager {
-  bool exit = false;
+  bool isExit = false;
 
   public:
     GameManager() = default;
@@ -17,7 +17,7 @@ class GameManager {
     unsigned int input();
     void startGame();
 
-    void setExit(bool exit) { this->exit = exit; }
-    const bool getExit() const { return exit; } 
+    void setExit(bool exit) { this->isExit = exit; }
+    const bool getExit() const { return isExit; } 
 };
 #endif /*GameManager.h*/
