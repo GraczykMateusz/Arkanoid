@@ -1,7 +1,7 @@
 #include "Ball.h"
 
-Ball::Ball(const unsigned int xMapSize,
-           const unsigned int yMapSize) {
+Ball::Ball(const unsigned int& xMapSize,
+           const unsigned int& yMapSize) {
     positionX = xMapSize/2;
     positionY = yMapSize/2;
 }
@@ -18,9 +18,9 @@ const std::string& Ball::getBallChar() const {
     return sBall;
 }
 
-void Ball::move(const std::vector<std::vector<std::string>> mapFields,
-                unsigned int xMapSize,
-                unsigned int yMapSize) {
+void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
+                const unsigned int& xMapSize,
+                const unsigned int& yMapSize) {
     bool isSpace = true;
 
     //The ball under a platform
@@ -88,7 +88,7 @@ void Ball::move(const std::vector<std::vector<std::string>> mapFields,
         }
     }
     else if(movingX == Movment::right && movingY == Movment::bottom) {
-        //Left wall
+        //Right wall
         if(mapFields[positionY][positionX + 1] == "#") {
             --positionX;
             ++positionY;

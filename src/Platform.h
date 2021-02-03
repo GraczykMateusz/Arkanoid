@@ -19,7 +19,7 @@ class Platform {
 
 public:
     //Constructor and destuctor
-    Platform(const unsigned int mapX);
+    Platform(const unsigned int& mapX);
     ~Platform() = default;
 
     //Move

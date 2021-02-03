@@ -17,14 +17,14 @@ class Ball {
 
     public:
         //Constructor and destuctor
-        Ball(const unsigned int xMapSize,
-             const unsigned int yMapSize);
+        Ball(const unsigned int& xMapSize,
+             const unsigned int& yMapSize);
         ~Ball() = default;
 
         //Methods
-        void move(const std::vector<std::vector<std::string>> mapFields,
-                  unsigned int xMapSize,
-                  unsigned int yMapSize);
+        void move(const std::vector<std::vector<std::string>>& mapFields,
+                  const unsigned int& xMapSize,
+                  const unsigned int& yMapSize);
 
         //Getters
         const int& getPositionX() const;

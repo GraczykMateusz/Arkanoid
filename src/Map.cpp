@@ -1,7 +1,7 @@
 #include "Map.h"
 
-Map::Map(const unsigned int xSize,
-         const unsigned int ySize) {
+Map::Map(const unsigned int& xSize,
+         const unsigned int& ySize) {
   this->xSize = xSize;
   this->ySize = ySize;
  
@@ -86,9 +86,9 @@ void Map::startTimer() const {
   waitMillisec(1000);
 }
 
-void Map::removePlatform(const std::vector<std::string> platformVec,
-                         const int positionX,
-                         const int positionY) {
+void Map::removePlatform(const std::vector<std::string>& platformVec,
+                         const int& positionX,
+                         const int& positionY) {
   int currentPositionX = positionX;
 
   for(auto& c : platformVec) {
@@ -97,9 +97,9 @@ void Map::removePlatform(const std::vector<std::string> platformVec,
   }
 }
 
-void Map::setPlatform(const std::vector<std::string> platformVec,
-                      const int positionX,
-                      const int positionY) {
+void Map::setPlatform(const std::vector<std::string>& platformVec,
+                      const int& positionX,
+                      const int& positionY) {
   int currentPositionX = positionX;
 
   for(auto& c : platformVec) {
@@ -108,14 +108,14 @@ void Map::setPlatform(const std::vector<std::string> platformVec,
   }
 }
 
-void Map::removeBall(const int positionX,
-                     const int positionY) {
+void Map::removeBall(const int& positionX,
+                     const int& positionY) {
   mapFields[positionY][positionX] = " ";
 }
 
-void Map::setBall(const std::string cBall,
-                  const int positionX,
-                  const int positionY) {
+void Map::setBall(const std::string& cBall,
+                  const int& positionX,
+                  const int& positionY) {
   mapFields[positionY][positionX] = cBall;
 }
 
@@ -215,6 +215,6 @@ void Map::display1() const {
   refresh();
 }
 
-void Map::waitMillisec(const unsigned int time) const {
+void Map::waitMillisec(const unsigned int& time) const {
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
 }

@@ -24,30 +24,30 @@ class Map {
     //Methods
     void create();
 
-    void waitMillisec(const unsigned int time) const;
+    void waitMillisec(const unsigned int& time) const;
 
   public:
     //Constructor and destuctor
-    Map(const unsigned int xSize,
-        const unsigned int ySize);
+    Map(const unsigned int& xSize,
+        const unsigned int& ySize);
     ~Map() = default;
     
     //Platform
-    void setPlatform(const std::vector<std::string> platformVec,
-                     const int positionX,
-                     const int positionY);
+    void setPlatform(const std::vector<std::string>& platformVec,
+                     const int& positionX,
+                     const int& positionY);
 
-    void removePlatform(const std::vector<std::string> platformVec,
-                        const int positionX,
-                        const int positionY);
+    void removePlatform(const std::vector<std::string>& platformVec,
+                        const int& positionX,
+                        const int& positionY);
 
     //Ball
-    void setBall(const std::string cBall,
-                 const int positionX,
-                 const int positionY);
+    void setBall(const std::string& cBall,
+                 const int& positionX,
+                 const int& positionY);
 
-    void removeBall(const int positionX,
-                    const int positionY);
+    void removeBall(const int& positionX,
+                    const int& positionY);
 
     //Methods
     void display();

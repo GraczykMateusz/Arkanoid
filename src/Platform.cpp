@@ -1,6 +1,6 @@
 #include "Platform.h"
 
-Platform::Platform(const unsigned int mapX) {
+Platform::Platform(const unsigned int& mapX) {
     rightFrame = mapX;
 }
 
