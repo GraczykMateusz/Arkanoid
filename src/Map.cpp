@@ -108,12 +108,15 @@ void Map::setPlatform(const std::vector<std::string> platformVec,
   }
 }
 
-void Map::removeBall(const int positionX, const int positionY) {
-
+void Map::removeBall(const int positionX,
+                     const int positionY) {
+  map[positionY][positionX] = " ";
 }
 
-void Map::setBall(const int positionX, const int positionY) {
-
+void Map::setBall(const std::string cBall,
+                  const int positionX,
+                  const int positionY) {
+  map[positionY][positionX] = cBall;
 }
 
 void Map::display3() const {

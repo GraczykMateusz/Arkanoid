@@ -3,7 +3,7 @@
 Keyboard::Keyboard() {
     try
     {
-        some_threads.push_back(std::thread(&Keyboard::checkPressedKey, this));
+        vec_t1.push_back(std::thread(&Keyboard::checkPressedKey, this));
     }
     catch(const std::exception& e)
     {
@@ -22,5 +22,5 @@ void Keyboard::checkPressedKey() {
 
 void Keyboard::stopThread() {
     isRunning = false;
-    some_threads[0].join();
+    vec_t1[0].join();
 }

@@ -16,12 +16,13 @@ class Map {
     int xSize, ySize;
     std::vector<std::vector<std::string>> map;
 
-    //Methods
-    void create();
-
+    //Numbers in a timer
     void display3() const;
     void display2() const;
     void display1() const;
+
+    //Methods
+    void create();
 
     void waitMillisec(const unsigned int time) const;
 
@@ -30,9 +31,8 @@ class Map {
     Map(const unsigned int xSize,
         const unsigned int ySize);
     ~Map() = default;
-
-    //Methods
-    void display();
+    
+    //Platform
     void setPlatform(const std::vector<std::string> platformVec,
                      const int positionX,
                      const int positionY);
@@ -41,8 +41,16 @@ class Map {
                         const int positionX,
                         const int positionY);
 
-    void setBall(const int positionX, const int positionY);
-    void removeBall(const int positionX, const int positionY);
+    //Ball
+    void setBall(const std::string cBall,
+                 const int positionX,
+                 const int positionY);
+
+    void removeBall(const int positionX,
+                    const int positionY);
+
+    //Methods
+    void display();
 
     const int& getXSize() { return xSize; }
 
@@ -50,5 +58,4 @@ class Map {
 
     void controlHelp() const;
 };
-
 #endif /*MAP_H*/

@@ -11,7 +11,7 @@ class Keyboard {
   int pressedKey = 52;
   bool isRunning = true;
 
-  std::vector<std::thread> some_threads;  
+  std::vector<std::thread> vec_t1;  
   
   public:
     Keyboard();
@@ -21,7 +21,7 @@ class Keyboard {
 
     void checkPressedKey();
     int& getPressedKey() { return pressedKey; }
-    std::vector<std::thread>& getThread() { return some_threads; }
+    std::vector<std::thread>& getThread() { return vec_t1; }
 };
 
 #endif /*KEYBOARD_H*/

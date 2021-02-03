@@ -41,8 +41,12 @@ void GameManager::startGame() {
 
   do {
     map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
+    map->setBall(ball->getBallChar(), ball->getPositionX(), ball->getPositionY());
 
     map->display();
+
+    map->removeBall(ball->getPositionX(), ball->getPositionY());
+    ball->move(X,Y);
 
     if(kb->getPressedKey() == 52)
     {

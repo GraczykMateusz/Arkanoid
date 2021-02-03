@@ -8,11 +8,11 @@ std::vector<std::string>& Platform::getPlatform() {
     return platformVec;
 }
 
-const int Platform::getPositionX() const {
+const int& Platform::getPositionX() const {
     return positionX;
 }
 
-const int Platform::getPositionY() const {
+const int& Platform::getPositionY() const {
     return positionY;
 }
 
