@@ -9,12 +9,15 @@
 
 class Keyboard {
   int pressedKey = 52;
+  bool isRunning = true;
 
   std::vector<std::thread> some_threads;  
   
   public:
     Keyboard();
     ~Keyboard() = default;
+
+    void stopThread();
 
     void checkPressedKey();
     int getPressedKey() { return Keyboard::pressedKey; }

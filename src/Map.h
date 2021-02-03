@@ -47,6 +47,8 @@ class Map {
     const int& getXSize() { return xSize; }
 
     void startTimer() const;
+
+    void controlHelp() const;
 };
 
 #endif /*MAP_H*/

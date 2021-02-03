@@ -60,6 +60,19 @@ void Map::display() {
     ++row;
   }
   refresh();
+  waitMillisec(100);
+}
+
+void Map::controlHelp() const {
+  clear();
+
+  printw("Move LEFT  -> 4\n");
+  printw("Move RIGHT -> 6\n");
+  printw("Any other button -> Pause platform\n");
+  printw("Exit -> Esc 2x");
+
+  refresh();
+  waitMillisec(4000);
 }
 
 void Map::startTimer() const {

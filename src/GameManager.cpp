@@ -29,39 +29,33 @@ unsigned int GameManager::input() {
 }
 
 void GameManager::startGame() {
-  //std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
+  std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
   std::unique_ptr<Map> map = std::make_unique<Map>(X,Y);
   std::unique_ptr<Platform> platform = std::make_unique<Platform>(X);
   
-  //map->startTimer(); 
-
-  map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
-
-  map->display();
+  setExit(false);
  
+  map->controlHelp();
+
   do {
-    //map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
+    map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
 
-    //map->display();
-    //int c = 52;
+    map->display();
 
-    //map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
-    //platform->moveLeft();
-    //map->display();
-
-    /*if(c == 52)
+    if(kb->getPressedKey() == 52)
     {
-
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveLeft();
     }
-    if(c == 54) {
+    if(kb->getPressedKey() == 54) {
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveRight();
     }
-    if(c == 27) {
+    if(kb->getPressedKey() == 27) {
       setExit(true);
-    }*/
+    }
   } while(!getExit());
-  //kb->getThread()[0].join();
+
+  kb->stopThread();
+  clear();
 };
