@@ -5,7 +5,7 @@ Map::Map(const unsigned int xSize,
   this->xSize = xSize;
   this->ySize = ySize;
  
-  map.resize(ySize, std::vector<std::string>(xSize));
+  mapFields.resize(ySize, std::vector<std::string>(xSize));
 
   create();
 }
@@ -18,13 +18,13 @@ void Map::create() {
     for(int x = 0; x < xSize; ++x) {
       //First and last rows
       if(row == 0 || row == ySize -1) {
-        map[y][x] = "#";
+        mapFields[y][x] = "#";
       } else {
         //First and last columns
         if(column == 0 || column == xSize - 1) {
-          map[y][x] = "#";
+          mapFields[y][x] = "#";
         } else {
-          map[y][x] = " ";
+          mapFields[y][x] = " ";
         }
       }
       ++column;
@@ -44,13 +44,13 @@ void Map::display() {
     for(int x = 0; x < xSize; ++x) {
       //First and last rows
       if(row == 0 || row == ySize -1) {
-        printw(map[y][x].data());
+        printw(mapFields[y][x].data());
       } else {
         //First and last columns
         if(column == 0 || column == xSize - 1) {
-          printw(map[y][x].data());
+          printw(mapFields[y][x].data());
         } else {
-          printw(map[y][x].data());
+          printw(mapFields[y][x].data());
         }
       }
       ++column;
@@ -92,7 +92,7 @@ void Map::removePlatform(const std::vector<std::string> platformVec,
   int currentPositionX = positionX;
 
   for(auto& c : platformVec) {
-    map[positionY][currentPositionX] = " ";
+    mapFields[positionY][currentPositionX] = " ";
     ++currentPositionX;
   }
 }
@@ -103,20 +103,20 @@ void Map::setPlatform(const std::vector<std::string> platformVec,
   int currentPositionX = positionX;
 
   for(auto& c : platformVec) {
-    map[positionY][currentPositionX] = c;
+    mapFields[positionY][currentPositionX] = c;
     ++currentPositionX;
   }
 }
 
 void Map::removeBall(const int positionX,
                      const int positionY) {
-  map[positionY][positionX] = " ";
+  mapFields[positionY][positionX] = " ";
 }
 
 void Map::setBall(const std::string cBall,
                   const int positionX,
                   const int positionY) {
-  map[positionY][positionX] = cBall;
+  mapFields[positionY][positionX] = cBall;
 }
 
 void Map::display3() const {

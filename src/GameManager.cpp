@@ -1,11 +1,12 @@
 #define X 40
-#define Y 25
+#define Y 24
 
 #include "GameManager.h"
 #include "Keyboard.h"
 #include "Platform.h"
 #include "Map.h"
 #include "Ball.h"
+#include "Point.h"
 
 void GameManager::menu() {
   printw("The Arkanoid Game\n"); 
@@ -46,7 +47,7 @@ void GameManager::startGame() {
     map->display();
 
     map->removeBall(ball->getPositionX(), ball->getPositionY());
-    ball->move(X,Y);
+    ball->move(map->getMapFields(), X, Y);
 
     if(kb->getPressedKey() == 52)
     {

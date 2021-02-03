@@ -14,7 +14,7 @@ class Map {
   private:
     //Variables
     int xSize, ySize;
-    std::vector<std::vector<std::string>> map;
+    std::vector<std::vector<std::string>> mapFields;
 
     //Numbers in a timer
     void display3() const;
@@ -53,6 +53,8 @@ class Map {
     void display();
 
     const int& getXSize() { return xSize; }
+
+    const std::vector<std::vector<std::string>>& getMapFields() const { return mapFields; }
 
     void startTimer() const;
 
