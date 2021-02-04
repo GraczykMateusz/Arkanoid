@@ -119,6 +119,50 @@ void Map::setBall(const std::string& cBall,
   mapFields[positionY][positionX] = cBall;
 }
 
+void Map::setPoints(std::vector<std::shared_ptr<Point>>& points) {
+  for(int i = 0; i < points.size(); ++i) {
+    auto y = points[i]->getPositionY();
+    auto x = points[i]->getPositionX();
+
+    auto symbol = points[i]->getSymbol();
+
+    mapFields[y][x] = symbol;
+  }
+}
+
+void Map::displayGameOver() const {
+  clear();
+
+  printw("########################################\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#              ###########             #\n");
+  printw("#            ###############           #\n");
+  printw("#           #################          #\n");
+  printw("#         ######         ######        #\n");
+  printw("#        ######           ######       #\n");
+  printw("#        #####             #####       #\n");
+  printw("#        #####             #####       #\n");
+  printw("#                         #####        #\n");
+  printw("#                       #####          #\n");
+  printw("#                     ######           #\n");
+  printw("#                   ######             #\n");
+  printw("#                 ######               #\n");
+  printw("#              #######                 #\n");
+  printw("#             ######                   #\n");
+  printw("#           ######                     #\n");
+  printw("#          ######                      #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#         ######################       #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("########################################\n");
+  printw("Any button to exit!");
+
+  refresh();
+}
+
 void Map::display3() const {
   clear();
 

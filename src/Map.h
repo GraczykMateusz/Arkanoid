@@ -8,6 +8,8 @@
 #include <ncurses.h>
 #include <string>
 
+#include "Point.h"
+
 class Map {
   /*The class is responsible for everything
    connected with creating and displaying map*/
@@ -49,8 +51,13 @@ class Map {
     void removeBall(const int& positionX,
                     const int& positionY);
 
+    //Points
+    void setPoints(std::vector<std::shared_ptr<Point>>& points);
+
     //Methods
     void display();
+
+    void displayGameOver() const;
 
     const int& getXSize() { return xSize; }
 

@@ -9,6 +9,7 @@
 class GameManager {
   //Exit
   bool isExit = false;
+  bool isGameOver = false;
 
   public:
     //Constructor and destuctor
@@ -19,9 +20,5 @@ class GameManager {
     void menu();
     unsigned int input();
     void startGame();
-
-    //Exit
-    void setExit(bool exit) { this->isExit = exit; }
-    const bool getExit() const { return isExit; } 
 };
 #endif /*GAME_MANAGER_H*/

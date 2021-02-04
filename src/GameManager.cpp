@@ -1,5 +1,6 @@
 #define X 40
 #define Y 24
+#define POINTS_COUNT 24
 
 #include "GameManager.h"
 #include "Keyboard.h"
@@ -35,10 +36,22 @@ void GameManager::startGame() {
   std::unique_ptr<Map> map = std::make_unique<Map>(X,Y);
   std::unique_ptr<Platform> platform = std::make_unique<Platform>(X);
   std::unique_ptr<Ball> ball = std::make_unique<Ball>(X,Y);
+
+  std::vector<std::shared_ptr<Point>> points;
+
+  for(unsigned int i = 0; i < POINTS_COUNT; ++i) {
+    std::shared_ptr<Point> point = std::make_shared<Point>(i);
+    points.push_back(point);
+  }
   
-  setExit(false);
+  map->setPoints(points);
+
+  isExit = false;
+  isGameOver = false;
  
   //map->controlHelp();
+
+  //map->startTimer();
 
   do {
     map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
@@ -47,7 +60,7 @@ void GameManager::startGame() {
     map->display();
 
     map->removeBall(ball->getPositionX(), ball->getPositionY());
-    ball->move(map->getMapFields(), X, Y);
+    ball->move(map->getMapFields(), X, Y, isGameOver);
 
     if(kb->getPressedKey() == 52)
     {
@@ -59,9 +72,13 @@ void GameManager::startGame() {
       platform->moveRight();
     }
     if(kb->getPressedKey() == 27) {
-      setExit(true);
+      isExit = true;
     }
-  } while(!getExit());
+  } while(!isExit && !isGameOver);
+
+  if(isGameOver) {
+    map->displayGameOver();
+  }
 
   kb->stopThread();
   clear();
