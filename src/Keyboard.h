@@ -23,5 +23,4 @@ class Keyboard {
     int& getPressedKey() { return pressedKey; }
     std::vector<std::thread>& getThread() { return vec_t1; }
 };
-
 #endif /*KEYBOARD_H*/

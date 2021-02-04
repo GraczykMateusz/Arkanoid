@@ -2,7 +2,7 @@
 
 Ball::Ball(const unsigned int& xMapSize,
            const unsigned int& yMapSize) {
-    positionX = xMapSize/2;
+    positionX = xMapSize/2 + 9;
     positionY = yMapSize/2;
 }
 
@@ -24,7 +24,7 @@ void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
     bool isSpace = true;
 
     //The ball under a platform
-    if(positionY == yMapSize - 1)
+    if(positionY == yMapSize - 1) {}
         //gameover
 
     if(movingX == Movment::left && movingY == Movment::top) {
@@ -58,7 +58,7 @@ void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
             //Right-top corner
             if(mapFields[positionY][positionX + 1] == "#" && mapFields[positionY - 1][positionX] == "#") {
                 --positionX;
-                --positionY;
+                ++positionY;
                 movingX = Movment::left;
                 movingY = Movment::bottom;
             }

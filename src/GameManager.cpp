@@ -38,7 +38,7 @@ void GameManager::startGame() {
   
   setExit(false);
  
-  map->controlHelp();
+  //map->controlHelp();
 
   do {
     map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());

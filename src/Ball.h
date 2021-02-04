@@ -12,7 +12,7 @@ class Ball {
     const std::string sBall = "O";
     int positionX, positionY;
 
-    Movment movingX = Movment::left;
+    Movment movingX = Movment::right;
     Movment movingY = Movment::top;
 
     public:
