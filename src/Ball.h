@@ -24,7 +24,8 @@ class Ball {
         //Methods
         void move(const std::vector<std::vector<std::string>>& mapFields,
                   const unsigned int& xMapSize,
-                  const unsigned int& yMapSize);
+                  const unsigned int& yMapSize,
+                  bool& isGameOver);
 
         //Getters
         const int& getPositionX() const;

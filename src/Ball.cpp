@@ -20,12 +20,13 @@ const std::string& Ball::getBallChar() const {
 
 void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
                 const unsigned int& xMapSize,
-                const unsigned int& yMapSize) {
+                const unsigned int& yMapSize,
+                bool& isGameOver) {
     bool isSpace = true;
 
     //The ball under a platform
-    if(positionY == yMapSize - 1) {}
-        //gameover
+    if(positionY == yMapSize - 2)
+        isGameOver = true;
 
     if(movingX == Movment::left && movingY == Movment::top) {
         //Left or top wall
@@ -78,8 +79,17 @@ void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
         }
     }
     else if(movingX == Movment::left && movingY == Movment::bottom) {
+        //Right platform corner
+        if(mapFields[positionY + 1][positionX - 1] == "=" && mapFields[positionY + 1][positionX] == " ") {
+            ++positionX;
+            --positionY;
+            movingX = Movment::right;
+            movingY = Movment::top;
+
+            isSpace = false;
+        }
         //Left wall or platform
-        if(mapFields[positionY][positionX - 1] == "#" || mapFields[positionY + 1][positionX] == "=") {
+        else if(mapFields[positionY][positionX - 1] == "#" || mapFields[positionY + 1][positionX] == "=") {
             //Left wall-platform corner
             if(mapFields[positionY][positionX - 1] == "#" && mapFields[positionY + 1][positionX] == "=") {
                 ++positionX;
@@ -103,9 +113,18 @@ void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
         }
     }
     else if(movingX == Movment::right && movingY == Movment::bottom) {
+        //Left platform corner
+        if(mapFields[positionY + 1][positionX + 1] == "=" && mapFields[positionY + 1][positionX] == " ") {
+            --positionX;
+            --positionY;
+            movingX = Movment::left;
+            movingY = Movment::top;
+
+            isSpace = false;
+        }
         //Right wall or platform
-        if(mapFields[positionY][positionX + 1] == "#" || mapFields[positionY + 1][positionX] == "=") {
-            //Right wall-platform corner
+        else if(mapFields[positionY][positionX + 1] == "#" || mapFields[positionY + 1][positionX] == "=") {
+            //(Right wall-platform) corner
             if(mapFields[positionY][positionX + 1] == "#" && mapFields[positionY + 1][positionX] == "=") {
                 --positionX;
                 --positionY;
