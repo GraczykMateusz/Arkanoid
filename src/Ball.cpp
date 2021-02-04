@@ -78,22 +78,52 @@ void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
         }
     }
     else if(movingX == Movment::left && movingY == Movment::bottom) {
-        //Left wall
-        if(mapFields[positionY][positionX - 1] == "#") {
-            ++positionX;
-            ++positionY;
-            movingX = Movment::right;
-
+        //Left wall or platform
+        if(mapFields[positionY][positionX - 1] == "#" || mapFields[positionY + 1][positionX] == "=") {
+            //Left wall-platform corner
+            if(mapFields[positionY][positionX - 1] == "#" && mapFields[positionY + 1][positionX] == "=") {
+                ++positionX;
+                --positionY;
+                movingX = Movment::right;
+                movingY = Movment::top;
+            }
+            //Left wall
+            else if(mapFields[positionY][positionX - 1] == "#") {
+                ++positionX;
+                ++positionY;
+                movingX = Movment::right;
+            }
+            //Platform
+            else if(mapFields[positionY + 1][positionX] == "=") {
+                --positionX;
+                --positionY;
+                movingY = Movment::top;
+            }
             isSpace = false;
         }
     }
     else if(movingX == Movment::right && movingY == Movment::bottom) {
-        //Right wall
-        if(mapFields[positionY][positionX + 1] == "#") {
-            --positionX;
-            ++positionY;
-            movingX = Movment::left;
-
+        //Right wall or platform
+        if(mapFields[positionY][positionX + 1] == "#" || mapFields[positionY + 1][positionX] == "=") {
+            //Right wall-platform corner
+            if(mapFields[positionY][positionX + 1] == "#" && mapFields[positionY + 1][positionX] == "=") {
+                --positionX;
+                --positionY;
+                movingX = Movment::left;
+                movingY = Movment::top;
+            }
+            //Right wall
+            else if(mapFields[positionY][positionX + 1] == "#") {
+                --positionX;
+                ++positionY;
+                movingX = Movment::left;
+            }
+            //Platform
+            else if(mapFields[positionY + 1][positionX] == "=") {
+                ++positionX;
+                --positionY;
+                movingY = Movment::top;
+            }
             isSpace = false;
         }
     }
