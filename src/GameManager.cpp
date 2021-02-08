@@ -32,6 +32,8 @@ unsigned int GameManager::input() {
 }
 
 void GameManager::startGame() {
+  reset();
+  
   std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
   std::unique_ptr<Map> map = std::make_unique<Map>(X,Y);
   std::unique_ptr<Platform> platform = std::make_unique<Platform>(X);
@@ -45,9 +47,6 @@ void GameManager::startGame() {
   }
   
   map->setPoints(points);
-
-  isExit = false;
-  isGameOver = false;
  
   //map->controlHelp();
 
@@ -60,7 +59,11 @@ void GameManager::startGame() {
     map->display();
 
     map->removeBall(ball->getPositionX(), ball->getPositionY());
-    ball->move(map->getMapFields(), X, Y, isGameOver);
+
+    if(ball->isPointCollision(map->getMapFields()))
+      ball->moveIfPointCollision(map->getMapFields(), pointsCount);
+    else
+      ball->move(map->getMapFields(), X, Y, isGameOver);
 
     if(kb->getPressedKey() == 52)
     {
@@ -83,3 +86,9 @@ void GameManager::startGame() {
   kb->stopThread();
   clear();
 };
+
+void GameManager::reset() {
+  isExit = false;
+  isGameOver = false;
+  pointsCount = 0;
+}

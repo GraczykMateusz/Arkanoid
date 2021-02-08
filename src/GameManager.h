@@ -10,6 +10,7 @@ class GameManager {
   //Exit
   bool isExit = false;
   bool isGameOver = false;
+  unsigned int pointsCount = 0;
 
   public:
     //Constructor and destuctor
@@ -20,5 +21,6 @@ class GameManager {
     void menu();
     unsigned int input();
     void startGame();
+    void reset();
 };
 #endif /*GAME_MANAGER_H*/

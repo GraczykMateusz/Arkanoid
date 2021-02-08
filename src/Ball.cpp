@@ -185,3 +185,134 @@ void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
         }
     }
 }
+
+bool Ball::isPointCollision(const std::vector<std::vector<std::string>>& mapFields) const {
+    bool isCollision = false;
+    auto symbol = Point::getSymbol();
+
+    if(mapFields[positionY - 1][positionX] == symbol || //Top
+       mapFields[positionY + 1][positionX] == symbol || //Bottom
+       mapFields[positionY][positionX - 1] == symbol || //Left
+       mapFields[positionY][positionX + 1] == symbol || //Right
+       mapFields[positionY - 1][positionX - 1] == symbol || //Top-left
+       mapFields[positionY - 1][positionX + 1] == symbol || //Top-right
+       mapFields[positionY + 1][positionX - 1] == symbol || //Bottom-left
+       mapFields[positionY + 1][positionX + 1] == symbol) { //Bottom-right
+           isCollision = true;
+    }
+    return isCollision;
+}
+
+void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& mapFields,
+                        unsigned int& pointsCount) {
+    auto symbol = Point::getSymbol();
+
+    if(movingX == Movment::left && movingY == Movment::top) {
+        //Point on the left-top
+        if(mapFields[positionY - 1][positionX - 1] == symbol) {
+            ++positionX;
+            ++positionY;
+            movingX = Movment::right;
+            movingY = Movment::bottom;
+            
+            ++pointsCount;
+        }
+        //Point on the left
+        else if(mapFields[positionY][positionX - 1] == symbol) {
+            ++positionX;
+            --positionY;
+            movingX = Movment::right;
+
+            ++pointsCount;
+        }
+        //Point on the top
+        else if(mapFields[positionY - 1][positionX] == symbol) {
+            --positionX;
+            ++positionY;
+            movingY = Movment::bottom;
+
+            ++pointsCount;
+        }
+    }
+    else if(movingX == Movment::right && movingY == Movment::top) {
+        //Point on the right-top
+        if(mapFields[positionY - 1][positionX + 1] == symbol) {
+            --positionX;
+            ++positionY;
+            movingX = Movment::left;
+            movingY = Movment::bottom;
+
+            ++pointsCount;
+        }
+        //Point on the right
+        else if(mapFields[positionY][positionX + 1] == symbol) {
+            --positionX;
+            --positionY;
+            movingX = Movment::left;
+
+            ++pointsCount;
+        }
+        //Point on the top
+        else if(mapFields[positionY - 1][positionX] == symbol) {
+            ++positionX;
+            ++positionY;
+            movingY = Movment::bottom;
+
+            ++pointsCount;
+        }
+    }
+    else if(movingX == Movment::left && movingY == Movment::bottom) {
+        //Point on the left-bottom
+        if(mapFields[positionY + 1][positionX - 1] == symbol) {
+            ++positionX;
+            --positionY;
+            movingX = Movment::right;
+            movingY = Movment::top;
+
+            ++pointsCount;
+        }
+        //Point on the left
+        else if(mapFields[positionY][positionX - 1] == symbol) {
+            ++positionX;
+            ++positionY;
+            movingX = Movment::right;
+
+            ++pointsCount;
+        }
+        //Point on the bottom
+        else if(mapFields[positionY + 1][positionX] == symbol) {
+            --positionX;
+            --positionY;
+            movingY = Movment::top;
+
+            ++pointsCount;
+        }
+    }
+    else if(movingX == Movment::right && movingY == Movment::bottom) {
+        //Point on the right-bottom
+        if(mapFields[positionY + 1][positionX + 1] == symbol) {
+            --positionX;
+            --positionY;
+            movingX = Movment::left;
+            movingY = Movment::top;
+
+            ++pointsCount;
+        }
+        //Point on the right
+        else if(mapFields[positionY][positionX + 1] == symbol) {
+            ++positionX;
+            ++positionY;
+            movingX = Movment::right;
+
+            ++pointsCount;
+        }
+        //Point on the bottom
+        else if(mapFields[positionY + 1][positionX] == symbol) {
+            ++positionX;
+            --positionY;
+            movingY = Movment::top;
+
+            ++pointsCount;
+        }
+    }
+}

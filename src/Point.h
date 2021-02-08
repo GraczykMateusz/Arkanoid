@@ -5,7 +5,7 @@
 
 class Point {
     int index;
-    const std::string sPoint = "+";
+    const static std::string sPoint;
     int positionX, positionY;
 
     void setPositionXY();
@@ -19,6 +19,7 @@ class Point {
         const int& getPositionX() const;
         const int& getPositionY() const;
 
-        const std::string& getSymbol() const;
+        const static std::string& getSymbol();
 };
+
 #endif /*BALL_H*/

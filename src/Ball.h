@@ -5,6 +5,8 @@
 #include <vector>
 #include <random>
 
+#include "Point.h"
+
 enum Movment {
     left, right, top, bottom
 };
@@ -27,6 +29,10 @@ class Ball {
                   const unsigned int& xMapSize,
                   const unsigned int& yMapSize,
                   bool& isGameOver);
+        void moveIfPointCollision(const std::vector<std::vector<std::string>>& mapFields,
+                          unsigned int& pointsCount);
+
+        bool isPointCollision(const std::vector<std::vector<std::string>>& mapFields) const;
 
         //Getters
         const int& getPositionX() const;

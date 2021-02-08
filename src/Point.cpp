@@ -1,5 +1,7 @@
 #include "Point.h"
 
+const std::string Point::sPoint = "+";
+
 Point::Point(const unsigned int index) {
     this->index = index;
 
@@ -27,6 +29,6 @@ const int& Point::getPositionY() const {
     return positionY;
 }
 
-const std::string& Point::getSymbol() const {
+const std::string& Point::getSymbol() {
     return sPoint;
 }
