@@ -33,6 +33,10 @@ const int& Ball::getPositionY() const {
     return positionY;
 }
 
+const bool& Ball::getMoveException() const {
+    return moveException;
+}
+
 const std::string& Ball::getBallChar() const {
     return sBall;
 }
@@ -41,6 +45,7 @@ void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
                 const unsigned int& xMapSize,
                 const unsigned int& yMapSize,
                 bool& isGameOver) {
+    moveException = false;
     bool isSpace = true;
 
     //The ball under a platform
@@ -204,9 +209,12 @@ bool Ball::isPointCollision(const std::vector<std::vector<std::string>>& mapFiel
 }
 
 void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& mapFields,
+                        std::vector<std::shared_ptr<Point>>& points,
                         unsigned int& pointsCount) {
+    moveException = false;
+    
     auto symbol = Point::getSymbol();
-
+    
     if(movingX == Movment::left && movingY == Movment::top) {
         //Point on the left-top
         if(mapFields[positionY - 1][positionX - 1] == symbol) {
@@ -232,6 +240,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
             movingY = Movment::bottom;
 
             ++pointsCount;
+        }
+        else {
+            moveException = true;
         }
     }
     else if(movingX == Movment::right && movingY == Movment::top) {
@@ -260,6 +271,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
 
             ++pointsCount;
         }
+        else {
+            moveException = true;
+        }
     }
     else if(movingX == Movment::left && movingY == Movment::bottom) {
         //Point on the left-bottom
@@ -287,6 +301,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
 
             ++pointsCount;
         }
+        else {
+            moveException = true;
+        }
     }
     else if(movingX == Movment::right && movingY == Movment::bottom) {
         //Point on the right-bottom
@@ -313,6 +330,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
             movingY = Movment::top;
 
             ++pointsCount;
+        }
+        else {
+            moveException = true;
         }
     }
 }

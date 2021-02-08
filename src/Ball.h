@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <random>
+#include <memory>
 
 #include "Point.h"
 
@@ -14,6 +15,8 @@ enum Movment {
 class Ball {
     const std::string sBall = "O";
     int positionX, positionY;
+
+    bool moveException = false;
 
     Movment movingX;
     Movment movingY;
@@ -30,13 +33,16 @@ class Ball {
                   const unsigned int& yMapSize,
                   bool& isGameOver);
         void moveIfPointCollision(const std::vector<std::vector<std::string>>& mapFields,
-                          unsigned int& pointsCount);
+                                  std::vector<std::shared_ptr<Point>>& points,
+                                  unsigned int& pointsCount);
 
         bool isPointCollision(const std::vector<std::vector<std::string>>& mapFields) const;
 
         //Getters
         const int& getPositionX() const;
         const int& getPositionY() const;
+        
+        const bool& getMoveException() const;
 
         const std::string& getBallChar() const;
 };

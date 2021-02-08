@@ -60,10 +60,15 @@ void GameManager::startGame() {
 
     map->removeBall(ball->getPositionX(), ball->getPositionY());
 
-    if(ball->isPointCollision(map->getMapFields()))
-      ball->moveIfPointCollision(map->getMapFields(), pointsCount);
-    else
+    if(ball->isPointCollision(map->getMapFields())) {
+      ball->moveIfPointCollision(map->getMapFields(), points, pointsCount);
+    } else {
       ball->move(map->getMapFields(), X, Y, isGameOver);
+    }
+    
+    if(ball->getMoveException()){
+      ball->move(map->getMapFields(), X, Y, isGameOver);
+    }
 
     if(kb->getPressedKey() == 52)
     {
