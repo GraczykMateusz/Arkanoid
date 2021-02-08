@@ -123,10 +123,11 @@ void Map::removePoint(std::vector<std::shared_ptr<Point>>& points,
                       const int& positionX,
                       const int& positionY) {
   if(positionX != -1 && positionY != -1) {
-    for(auto it = points.begin(); it != points.end(); ++it) {
+    for(auto it = points.begin(); it != points.end(); it++) {
       if((*it)->getPositionY() == positionY &&
         (*it)->getPositionX() == positionX) {
         points.erase(it);
+        break;
       }    
     }
     points.shrink_to_fit();
