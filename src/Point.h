@@ -20,6 +20,7 @@ class Point {
         const int& getPositionY() const;
 
         const static std::string& getSymbol();
+        const int getIndex() const;
 };
 
 #endif /*BALL_H*/

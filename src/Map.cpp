@@ -119,6 +119,22 @@ void Map::setBall(const std::string& cBall,
   mapFields[positionY][positionX] = cBall;
 }
 
+void Map::removePoint(std::vector<std::shared_ptr<Point>>& points,
+                      const int& positionX,
+                      const int& positionY) {
+  if(positionX != -1 && positionY != -1) {
+    for(auto it = points.begin(); it != points.end(); ++it) {
+      if((*it)->getPositionY() == positionY &&
+        (*it)->getPositionX() == positionX) {
+        points.erase(it);
+      }    
+    }
+    points.shrink_to_fit();
+
+    mapFields[positionY][positionX] = " ";
+  }
+}
+
 void Map::setPoints(std::vector<std::shared_ptr<Point>>& points) {
   for(int i = 0; i < points.size(); ++i) {
     auto y = points[i]->getPositionY();

@@ -31,6 +31,12 @@ unsigned int GameManager::input() {
   return cInput;
 }
 
+void GameManager::reset() {
+  isExit = false;
+  isGameOver = false;
+  pointsCount = 0;
+}
+
 void GameManager::startGame() {
   reset();
   
@@ -45,23 +51,23 @@ void GameManager::startGame() {
     std::shared_ptr<Point> point = std::make_shared<Point>(i);
     points.push_back(point);
   }
-  
-  map->setPoints(points);
  
   //map->controlHelp();
 
   //map->startTimer();
 
   do {
+    map->setPoints(points);
     map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
     map->setBall(ball->getBallChar(), ball->getPositionX(), ball->getPositionY());
 
-    map->display();
+    map->display();  
 
     map->removeBall(ball->getPositionX(), ball->getPositionY());
 
     if(ball->isPointCollision(map->getMapFields())) {
       ball->moveIfPointCollision(map->getMapFields(), points, pointsCount);
+      map->removePoint(points, ball->getHitPointPositionX(), ball->getHitPointPositionY());
     } else {
       ball->move(map->getMapFields(), X, Y, isGameOver);
     }
@@ -91,9 +97,3 @@ void GameManager::startGame() {
   kb->stopThread();
   clear();
 };
-
-void GameManager::reset() {
-  isExit = false;
-  isGameOver = false;
-  pointsCount = 0;
-}

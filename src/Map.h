@@ -54,6 +54,10 @@ class Map {
     //Points
     void setPoints(std::vector<std::shared_ptr<Point>>& points);
 
+    void removePoint(std::vector<std::shared_ptr<Point>>& points,
+                     const int& positionX,
+                     const int& positionY);
+
     //Methods
     void display();
 

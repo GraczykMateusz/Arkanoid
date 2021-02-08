@@ -21,6 +21,9 @@ class Ball {
     Movment movingX;
     Movment movingY;
 
+    int hitPointPositionX = -1;
+    int hitPointPositionY = -1;
+
     public:
         //Constructor and destuctor
         Ball(const unsigned int& xMapSize,
@@ -41,7 +44,10 @@ class Ball {
         //Getters
         const int& getPositionX() const;
         const int& getPositionY() const;
-        
+
+        const int& getHitPointPositionX() const;
+        const int& getHitPointPositionY() const;
+
         const bool& getMoveException() const;
 
         const std::string& getBallChar() const;

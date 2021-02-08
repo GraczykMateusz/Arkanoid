@@ -32,3 +32,7 @@ const int& Point::getPositionY() const {
 const std::string& Point::getSymbol() {
     return sPoint;
 }
+
+const int Point::getIndex() const {
+    return index;
+}

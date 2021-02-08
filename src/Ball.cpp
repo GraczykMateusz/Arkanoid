@@ -41,11 +41,23 @@ const std::string& Ball::getBallChar() const {
     return sBall;
 }
 
+const int& Ball::getHitPointPositionX() const {
+    return hitPointPositionX;
+}
+
+const int& Ball::getHitPointPositionY() const {
+    return hitPointPositionY;
+}
+
 void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
                 const unsigned int& xMapSize,
                 const unsigned int& yMapSize,
                 bool& isGameOver) {
     moveException = false;
+    
+    hitPointPositionX = -1;
+    hitPointPositionY = -1;
+
     bool isSpace = true;
 
     //The ball under a platform
@@ -213,20 +225,29 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
                         unsigned int& pointsCount) {
     moveException = false;
     
+    hitPointPositionX = -1;
+    hitPointPositionY = -1;
+    
     auto symbol = Point::getSymbol();
     
     if(movingX == Movment::left && movingY == Movment::top) {
         //Point on the left-top
         if(mapFields[positionY - 1][positionX - 1] == symbol) {
+            hitPointPositionX = positionX - 1;
+            hitPointPositionY = positionY - 1;
+            
             ++positionX;
             ++positionY;
             movingX = Movment::right;
             movingY = Movment::bottom;
-            
+
             ++pointsCount;
         }
         //Point on the left
         else if(mapFields[positionY][positionX - 1] == symbol) {
+            hitPointPositionX = positionX - 1;
+            hitPointPositionY = positionY;
+            
             ++positionX;
             --positionY;
             movingX = Movment::right;
@@ -235,6 +256,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
         }
         //Point on the top
         else if(mapFields[positionY - 1][positionX] == symbol) {
+            hitPointPositionX = positionX;
+            hitPointPositionY = positionY - 1;
+            
             --positionX;
             ++positionY;
             movingY = Movment::bottom;
@@ -248,6 +272,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
     else if(movingX == Movment::right && movingY == Movment::top) {
         //Point on the right-top
         if(mapFields[positionY - 1][positionX + 1] == symbol) {
+            hitPointPositionX = positionX + 1;
+            hitPointPositionY = positionY - 1;
+            
             --positionX;
             ++positionY;
             movingX = Movment::left;
@@ -257,6 +284,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
         }
         //Point on the right
         else if(mapFields[positionY][positionX + 1] == symbol) {
+            hitPointPositionX = positionX + 1;
+            hitPointPositionY = positionY;
+            
             --positionX;
             --positionY;
             movingX = Movment::left;
@@ -265,6 +295,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
         }
         //Point on the top
         else if(mapFields[positionY - 1][positionX] == symbol) {
+            hitPointPositionX = positionX;
+            hitPointPositionY = positionY - 1;
+            
             ++positionX;
             ++positionY;
             movingY = Movment::bottom;
@@ -278,6 +311,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
     else if(movingX == Movment::left && movingY == Movment::bottom) {
         //Point on the left-bottom
         if(mapFields[positionY + 1][positionX - 1] == symbol) {
+            hitPointPositionX = positionX - 1;
+            hitPointPositionY = positionY + 1;
+            
             ++positionX;
             --positionY;
             movingX = Movment::right;
@@ -287,6 +323,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
         }
         //Point on the left
         else if(mapFields[positionY][positionX - 1] == symbol) {
+            hitPointPositionX = positionX - 1;
+            hitPointPositionY = positionY;
+            
             ++positionX;
             ++positionY;
             movingX = Movment::right;
@@ -295,6 +334,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
         }
         //Point on the bottom
         else if(mapFields[positionY + 1][positionX] == symbol) {
+            hitPointPositionX = positionX;
+            hitPointPositionY = positionY + 1;
+            
             --positionX;
             --positionY;
             movingY = Movment::top;
@@ -308,6 +350,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
     else if(movingX == Movment::right && movingY == Movment::bottom) {
         //Point on the right-bottom
         if(mapFields[positionY + 1][positionX + 1] == symbol) {
+            hitPointPositionX = positionY + 1;
+            hitPointPositionY = positionY + 1;
+            
             --positionX;
             --positionY;
             movingX = Movment::left;
@@ -317,6 +362,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
         }
         //Point on the right
         else if(mapFields[positionY][positionX + 1] == symbol) {
+            hitPointPositionX = positionX + 1;
+            hitPointPositionY = positionY;
+            
             ++positionX;
             ++positionY;
             movingX = Movment::right;
@@ -325,6 +373,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
         }
         //Point on the bottom
         else if(mapFields[positionY + 1][positionX] == symbol) {
+            hitPointPositionX = positionX;
+            hitPointPositionY = positionY + 1;
+            
             ++positionX;
             --positionY;
             movingY = Movment::top;
