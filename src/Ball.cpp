@@ -2,8 +2,27 @@
 
 Ball::Ball(const unsigned int& xMapSize,
            const unsigned int& yMapSize) {
-    positionX = xMapSize/2 + 9;
+    std::random_device rd;
+	std::mt19937 gen(rd());
+    std::bernoulli_distribution randBool(0.5);
+	
+    //Generate position
+	std::uniform_int_distribution<> randPosX(2, xMapSize-2);
+
+    positionX = randPosX(gen);
     positionY = yMapSize/2;
+
+    //Generate move
+    std::uniform_int_distribution<> randMove(0, 1);
+
+    movingY = Movment::top;
+
+    if(randMove(gen)) {
+        movingX = Movment::right;
+    }
+    else {
+        movingX = Movment::left;
+    }
 }
 
 const int& Ball::getPositionX() const {

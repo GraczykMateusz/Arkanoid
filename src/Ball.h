@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <random>
 
 enum Movment {
     left, right, top, bottom
@@ -12,8 +13,8 @@ class Ball {
     const std::string sBall = "O";
     int positionX, positionY;
 
-    Movment movingX = Movment::right;
-    Movment movingY = Movment::top;
+    Movment movingX;
+    Movment movingY;
 
     public:
         //Constructor and destuctor
