@@ -11,7 +11,10 @@ class GameManager {
   private:
     //Exit
     bool isExit = false;
+
+    //Gameover, win
     bool isGameOver = false;
+    bool isWin = false;
 
     //Points
     unsigned int pointsCount = 0;
@@ -26,5 +29,6 @@ class GameManager {
     unsigned int input();
     void startGame();
     void reset();
+    void checkWin();
 };
 #endif /*GAME_MANAGER_H*/

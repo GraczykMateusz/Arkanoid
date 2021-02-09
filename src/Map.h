@@ -65,6 +65,8 @@ class Map {
 
     void displayGameOver(unsigned int pointsCount) const;
 
+    void displayWin(unsigned int pointsCount) const;
+
     void startTimer() const;
 
     void controlHelp() const;

@@ -182,6 +182,41 @@ void Map::displayGameOver(unsigned int pointsCount) const {
   refresh();
 }
 
+void Map::displayWin(unsigned int pointsCount) const {
+  clear();
+
+  printw("########################################\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("#                                      #\n");
+  printw("########################################\n");
+  printw("Your score: ");
+  printw(std::to_string(pointsCount).data());
+  printw("\nAny button to exit!");
+
+  refresh();
+}
+
 void Map::display3() const {
   clear();
 

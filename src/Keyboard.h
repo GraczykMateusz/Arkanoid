@@ -10,7 +10,7 @@
 class Keyboard {
   /*The class is responsible for a key input*/
   private:
-    int pressedKey = 52;
+    int pressedKey;
     bool isRunning = true;
 
     std::vector<std::thread> vec_t1;  

@@ -2,6 +2,7 @@
 #define MAP_HIGHT 25
 
 #define POINTS_COUNT 24
+#define WIN_POINTS 15
 
 #define NUMERIC_4 52
 #define NUMERIC_6 54
@@ -39,7 +40,14 @@ unsigned int GameManager::input() {
 void GameManager::reset() {
   isExit = false;
   isGameOver = false;
+  isWin = false;
   pointsCount = 0;
+}
+
+void GameManager::checkWin() {
+  if(pointsCount == WIN_POINTS) {
+    isWin = true;
+  }
 }
 
 void GameManager::startGame() {
@@ -93,10 +101,14 @@ void GameManager::startGame() {
     if(kb->getPressedKey() == ESC) {
       isExit = true;
     }
-  } while(!isExit && !isGameOver);
+  } while(!isExit && !isGameOver && !isWin);
 
   if(isGameOver) {
     map->displayGameOver(pointsCount);
+  }
+
+  if(isWin) {
+    map->displayWin(pointsCount);
   }
 
   kb->stopThread();
