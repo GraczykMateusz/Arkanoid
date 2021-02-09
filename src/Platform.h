@@ -8,8 +8,8 @@
 
 class Platform {
     //Position
-    int positionX = 20;
-    const int positionY = 22;
+    int positionX;
+    int positionY;
 
     //Right frame position
     int rightFrame;
@@ -19,7 +19,8 @@ class Platform {
 
 public:
     //Constructor and destuctor
-    Platform(const unsigned int& mapX);
+    Platform(const unsigned int& mapX,
+             const unsigned int& mapY);
     ~Platform() = default;
 
     //Move

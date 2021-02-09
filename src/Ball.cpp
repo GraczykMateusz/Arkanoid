@@ -9,11 +9,8 @@ Ball::Ball(const unsigned int& xMapSize,
     //Generate position
 	std::uniform_int_distribution<> randPosX(2, xMapSize-2);
 
-    /*positionX = randPosX(gen);
-    positionY = yMapSize/2;*/
-
-    positionX = 21;
-    positionY = 14;
+    positionX = randPosX(gen);
+    positionY = yMapSize/2;
 
     //Generate move
     std::uniform_int_distribution<> randMove(0, 1);
@@ -21,13 +18,12 @@ Ball::Ball(const unsigned int& xMapSize,
     movingY = Movment::top;
     movingX = Movment::left;
 
-    /*
     if(randMove(gen)) {
         movingX = Movment::right;
     }
     else {
         movingX = Movment::left;
-    }*/
+    }
 }
 
 const int& Ball::getPositionX() const {

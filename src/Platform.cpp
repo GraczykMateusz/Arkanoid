@@ -1,7 +1,11 @@
 #include "Platform.h"
 
-Platform::Platform(const unsigned int& mapX) {
+Platform::Platform(const unsigned int& mapX,
+                   const unsigned int& mapY) {
     rightFrame = mapX;
+
+    positionX = mapX / 2;
+    positionY = mapY - 2;
 }
 
 std::vector<std::string>& Platform::getPlatform() {
