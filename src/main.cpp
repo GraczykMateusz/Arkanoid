@@ -17,6 +17,12 @@ int main() {
         gameManager->startGame();
         break;
       case 2:
+        gameManager->helpOffOn();
+        break;
+      case 3:
+        gameManager->timerOffOn();
+        break;
+      case 4:
         endwin();
         return 0;
         break;

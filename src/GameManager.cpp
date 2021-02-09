@@ -18,7 +18,24 @@
 void GameManager::menu() {
   printw("The Arkanoid Game\n"); 
   printw("1. Start\n");
-  printw("2. Exit\n");
+  
+  printw("2. Control help [");
+  if(isControlHelp) {
+    printw("ON");
+  } else {
+    printw("OFF");
+  }
+  printw("]\n");
+
+  printw("3. Timer [");
+  if(isTimer) {
+    printw("ON");
+  } else {
+    printw("OFF");
+  }
+  printw("]\n");
+  
+  printw("4. Exit\n");
 }
 
 unsigned int GameManager::input() {
@@ -44,6 +61,22 @@ void GameManager::reset() {
   pointsCount = 0;
 }
 
+void GameManager::helpOffOn() {
+  if(isControlHelp) {
+    isControlHelp = false;
+  } else {
+    isControlHelp = true;
+  }
+}
+
+void GameManager::timerOffOn() {
+  if(isTimer) {
+    isTimer = false;
+  } else {
+    isTimer = true;
+  }
+}
+
 void GameManager::checkWin() {
   if(pointsCount == WIN_POINTS) {
     isWin = true;
@@ -65,10 +98,13 @@ void GameManager::startGame() {
     points.push_back(point);
   }
  
-  map->controlHelp();
-
-  map->startTimer();
-
+  if(isControlHelp) {
+    map->controlHelp();
+  }
+  if(isTimer) {
+    map->startTimer();
+  }
+  
   do {
     map->setPoints(points);
     map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());

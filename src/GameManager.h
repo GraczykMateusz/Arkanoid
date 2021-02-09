@@ -16,6 +16,10 @@ class GameManager {
     bool isGameOver = false;
     bool isWin = false;
 
+    //Settings
+    bool isControlHelp = true;
+    bool isTimer = true;
+
     //Points
     unsigned int pointsCount = 0;
 
@@ -30,5 +34,9 @@ class GameManager {
     void startGame();
     void reset();
     void checkWin();
+
+    //Settings
+    void helpOffOn();
+    void timerOffOn();
 };
 #endif /*GAME_MANAGER_H*/
