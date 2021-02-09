@@ -13,16 +13,25 @@ enum Movment {
 };
 
 class Ball {
-    const std::string sBall = "O";
-    int positionX, positionY;
+    /*The class makes a ball object*/
+    private:
+        const std::string sBall = "O";
+        int positionX, positionY;
 
-    bool moveException = false;
+        //                                                  ###### 
+        //That exception is needed when the ball is moving  #\ $ #
+        //for example left-top and the the point is on his  # O  #
+        //right-top corner (the slash is a ball move track) #  \ #
+        //                                                  ######
+        bool moveException = false;
 
-    Movment movingX;
-    Movment movingY;
+        //Current ball movment
+        Movment movingX;
+        Movment movingY;
 
-    int hitPointPositionX = -1;
-    int hitPointPositionY = -1;
+        //The point position to remove
+        int hitPointPositionX = -1;
+        int hitPointPositionY = -1;
 
     public:
         //Constructor and destuctor
@@ -30,7 +39,7 @@ class Ball {
              const unsigned int& yMapSize);
         ~Ball() = default;
 
-        //Methods
+        //Movement
         void move(const std::vector<std::vector<std::string>>& mapFields,
                   const unsigned int& xMapSize,
                   const unsigned int& yMapSize,
@@ -39,6 +48,7 @@ class Ball {
                                   std::vector<std::shared_ptr<Point>>& points,
                                   unsigned int& pointsCount);
 
+        //Check collision
         bool isPointCollision(const std::vector<std::vector<std::string>>& mapFields) const;
 
         //Getters

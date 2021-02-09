@@ -29,10 +29,10 @@ const int& Point::getPositionY() const {
     return positionY;
 }
 
-const std::string& Point::getSymbol() {
-    return sPoint;
-}
-
 const int Point::getIndex() const {
     return index;
+}
+
+const std::string& Point::getSymbol() {
+    return sPoint;
 }

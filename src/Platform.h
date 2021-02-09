@@ -6,7 +6,11 @@
 #include <vector>
 #include <string>
 
+typedef std::vector<std::string> vec_str;
+
 class Platform {
+    /*The class is responsible for create a model of platform*/
+
     //Position
     int positionX;
     int positionY;
@@ -15,7 +19,7 @@ class Platform {
     int rightFrame;
 
     //Platform
-    std::vector<std::string> platformVec = std::vector<std::string>(PLATFORM_LENGTH, "=");
+    vec_str platformVec = vec_str(PLATFORM_LENGTH, "=");
 
 public:
     //Constructor and destuctor
@@ -31,7 +35,6 @@ public:
     const int& getPositionX() const;
     const int& getPositionY() const;
 
-    std::vector<std::string>& getPlatform();
+    vec_str& getPlatform();
 };
-
 #endif /*PLATFORM_H*/

@@ -4,11 +4,17 @@
 #include <string>
 
 class Point {
-    int index;
-    const static std::string sPoint;
-    int positionX, positionY;
+    /*Make a model of a point object*/
+    private:
+        //Point symbol
+        const static std::string sPoint;
 
-    void setPositionXY();
+        //Index from 0, each point has a different
+        int index;
+
+        //Position
+        int positionX, positionY;
+        void setPositionXY();
 
     public:
         //Constructor and destuctor

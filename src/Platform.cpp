@@ -8,18 +8,6 @@ Platform::Platform(const unsigned int& mapX,
     positionY = mapY - 2;
 }
 
-std::vector<std::string>& Platform::getPlatform() {
-    return platformVec;
-}
-
-const int& Platform::getPositionX() const {
-    return positionX;
-}
-
-const int& Platform::getPositionY() const {
-    return positionY;
-}
-
 void Platform::moveRight() {
     if(positionX < rightFrame - platformVec.size() - 1)
         ++positionX;
@@ -30,4 +18,16 @@ void Platform::moveLeft() {
     
     if(positionX > leftFrame + 1)
         --positionX;
+}
+
+std::vector<std::string>& Platform::getPlatform() {
+    return platformVec;
+}
+
+const int& Platform::getPositionX() const {
+    return positionX;
+}
+
+const int& Platform::getPositionY() const {
+    return positionY;
 }

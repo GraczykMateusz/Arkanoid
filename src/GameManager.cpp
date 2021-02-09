@@ -1,6 +1,11 @@
-#define X 40
-#define Y 25
+#define MAP_WIDTH 40
+#define MAP_HIGHT 25
+
 #define POINTS_COUNT 24
+
+#define NUMERIC_4 52
+#define NUMERIC_6 54
+#define ESC 27
 
 #include "GameManager.h"
 #include "Keyboard.h"
@@ -41,9 +46,9 @@ void GameManager::startGame() {
   reset();
   
   std::unique_ptr<Keyboard> kb = std::make_unique<Keyboard>();
-  std::unique_ptr<Map> map = std::make_unique<Map>(X,Y);
-  std::unique_ptr<Platform> platform = std::make_unique<Platform>(X,Y);
-  std::unique_ptr<Ball> ball = std::make_unique<Ball>(X,Y);
+  std::unique_ptr<Map> map = std::make_unique<Map>(MAP_WIDTH, MAP_HIGHT);
+  std::unique_ptr<Platform> platform = std::make_unique<Platform>(MAP_WIDTH, MAP_HIGHT);
+  std::unique_ptr<Ball> ball = std::make_unique<Ball>(MAP_WIDTH, MAP_HIGHT);
 
   std::vector<std::shared_ptr<Point>> points;
 
@@ -52,9 +57,9 @@ void GameManager::startGame() {
     points.push_back(point);
   }
  
-  //map->controlHelp();
+  map->controlHelp();
 
-  //map->startTimer();
+  map->startTimer();
 
   do {
     map->setPoints(points);
@@ -62,30 +67,30 @@ void GameManager::startGame() {
     map->setBall(ball->getBallChar(), ball->getPositionX(), ball->getPositionY());
 
     map->display();
-    //auto c = getch();
+
     map->removeBall(ball->getPositionX(), ball->getPositionY());
 
     if(ball->isPointCollision(map->getMapFields())) {
       ball->moveIfPointCollision(map->getMapFields(), points, pointsCount);
       map->removePoint(points, ball->getHitPointPositionX(), ball->getHitPointPositionY());
     } else {
-      ball->move(map->getMapFields(), X, Y, isGameOver);
+      ball->move(map->getMapFields(), MAP_WIDTH, MAP_HIGHT, isGameOver);
     }
     
     if(ball->getMoveException()){
-      ball->move(map->getMapFields(), X, Y, isGameOver);
+      ball->move(map->getMapFields(), MAP_WIDTH, MAP_HIGHT, isGameOver);
     }
 
-    if(kb->getPressedKey() == 52)
+    if(kb->getPressedKey() == NUMERIC_4)
     {
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveLeft();
     }
-    if(kb->getPressedKey() == 54) {
+    if(kb->getPressedKey() == NUMERIC_6) {
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
       platform->moveRight();
     }
-    if(kb->getPressedKey() == 27) {
+    if(kb->getPressedKey() == ESC) {
       isExit = true;
     }
   } while(!isExit && !isGameOver);

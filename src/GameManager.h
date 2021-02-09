@@ -7,10 +7,14 @@
 #include <ncurses.h>
 
 class GameManager {
-  //Exit
-  bool isExit = false;
-  bool isGameOver = false;
-  unsigned int pointsCount = 0;
+  /*All game management, settings etc.*/
+  private:
+    //Exit
+    bool isExit = false;
+    bool isGameOver = false;
+
+    //Points
+    unsigned int pointsCount = 0;
 
   public:
     //Constructor and destuctor

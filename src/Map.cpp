@@ -279,3 +279,7 @@ void Map::display1() const {
 void Map::waitMillisec(const unsigned int& time) const {
     std::this_thread::sleep_for(std::chrono::milliseconds(time));
 }
+
+const std::vector<std::vector<std::string>>& Map::getMapFields() const {
+  return mapFields;
+}

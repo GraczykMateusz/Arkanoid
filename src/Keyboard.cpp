@@ -24,3 +24,11 @@ void Keyboard::stopThread() {
     isRunning = false;
     vec_t1[0].join();
 }
+
+int& Keyboard::getPressedKey() {
+    return pressedKey;
+}
+
+std::vector<std::thread>& Keyboard::getThread() {
+    return vec_t1;
+}

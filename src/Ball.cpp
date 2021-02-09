@@ -26,30 +26,6 @@ Ball::Ball(const unsigned int& xMapSize,
     }
 }
 
-const int& Ball::getPositionX() const {
-    return positionX;
-}
-        
-const int& Ball::getPositionY() const {
-    return positionY;
-}
-
-const bool& Ball::getMoveException() const {
-    return moveException;
-}
-
-const std::string& Ball::getBallChar() const {
-    return sBall;
-}
-
-const int& Ball::getHitPointPositionX() const {
-    return hitPointPositionX;
-}
-
-const int& Ball::getHitPointPositionY() const {
-    return hitPointPositionY;
-}
-
 void Ball::move(const std::vector<std::vector<std::string>>& mapFields,
                 const unsigned int& xMapSize,
                 const unsigned int& yMapSize,
@@ -387,4 +363,28 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
             moveException = true;
         }
     }
+}
+
+const int& Ball::getPositionX() const {
+    return positionX;
+}
+        
+const int& Ball::getPositionY() const {
+    return positionY;
+}
+
+const bool& Ball::getMoveException() const {
+    return moveException;
+}
+
+const std::string& Ball::getBallChar() const {
+    return sBall;
+}
+
+const int& Ball::getHitPointPositionX() const {
+    return hitPointPositionX;
+}
+
+const int& Ball::getHitPointPositionY() const {
+    return hitPointPositionY;
 }

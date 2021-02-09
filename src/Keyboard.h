@@ -8,19 +8,26 @@
 #include <thread>
 
 class Keyboard {
-  int pressedKey = 52;
-  bool isRunning = true;
+  /*The class is responsible for a key input*/
+  private:
+    int pressedKey = 52;
+    bool isRunning = true;
 
-  std::vector<std::thread> vec_t1;  
+    std::vector<std::thread> vec_t1;  
   
   public:
+    //Constructor and destuctor
     Keyboard();
     ~Keyboard() = default;
 
+    //Make thread free
     void stopThread();
 
+    //Check when key is pressed and get that key
     void checkPressedKey();
-    int& getPressedKey() { return pressedKey; }
-    std::vector<std::thread>& getThread() { return vec_t1; }
+
+    //Getters
+    int& getPressedKey();
+    std::vector<std::thread>& getThread();
 };
 #endif /*KEYBOARD_H*/
