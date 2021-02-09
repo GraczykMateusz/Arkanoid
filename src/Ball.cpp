@@ -9,20 +9,25 @@ Ball::Ball(const unsigned int& xMapSize,
     //Generate position
 	std::uniform_int_distribution<> randPosX(2, xMapSize-2);
 
-    positionX = randPosX(gen);
-    positionY = yMapSize/2;
+    /*positionX = randPosX(gen);
+    positionY = yMapSize/2;*/
+
+    positionX = 21;
+    positionY = 14;
 
     //Generate move
     std::uniform_int_distribution<> randMove(0, 1);
 
     movingY = Movment::top;
+    movingX = Movment::left;
 
+    /*
     if(randMove(gen)) {
         movingX = Movment::right;
     }
     else {
         movingX = Movment::left;
-    }
+    }*/
 }
 
 const int& Ball::getPositionX() const {
@@ -350,7 +355,7 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
     else if(movingX == Movment::right && movingY == Movment::bottom) {
         //Point on the right-bottom
         if(mapFields[positionY + 1][positionX + 1] == symbol) {
-            hitPointPositionX = positionY + 1;
+            hitPointPositionX = positionX + 1;
             hitPointPositionY = positionY + 1;
             
             --positionX;
@@ -365,9 +370,9 @@ void Ball::moveIfPointCollision(const std::vector<std::vector<std::string>>& map
             hitPointPositionX = positionX + 1;
             hitPointPositionY = positionY;
             
-            ++positionX;
+            --positionX;
             ++positionY;
-            movingX = Movment::right;
+            movingX = Movment::left;
 
             ++pointsCount;
         }

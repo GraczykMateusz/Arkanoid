@@ -1,5 +1,5 @@
 #define X 40
-#define Y 24
+#define Y 25
 #define POINTS_COUNT 24
 
 #include "GameManager.h"
@@ -61,8 +61,8 @@ void GameManager::startGame() {
     map->setPlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
     map->setBall(ball->getBallChar(), ball->getPositionX(), ball->getPositionY());
 
-    map->display();  
-
+    map->display();
+    //auto c = getch();
     map->removeBall(ball->getPositionX(), ball->getPositionY());
 
     if(ball->isPointCollision(map->getMapFields())) {

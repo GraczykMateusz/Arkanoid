@@ -1,6 +1,6 @@
 #include "Point.h"
 
-const std::string Point::sPoint = "+";
+const std::string Point::sPoint = "$";
 
 Point::Point(const unsigned int index) {
     this->index = index;

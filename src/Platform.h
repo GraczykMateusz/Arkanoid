@@ -9,7 +9,7 @@
 class Platform {
     //Position
     int positionX = 20;
-    const int positionY = 20;
+    const int positionY = 22;
 
     //Right frame position
     int rightFrame;

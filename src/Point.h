@@ -22,5 +22,4 @@ class Point {
         const static std::string& getSymbol();
         const int getIndex() const;
 };
-
 #endif /*BALL_H*/
