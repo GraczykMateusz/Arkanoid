@@ -96,7 +96,7 @@ void GameManager::startGame() {
   } while(!isExit && !isGameOver);
 
   if(isGameOver) {
-    map->displayGameOver();
+    map->displayGameOver(pointsCount);
   }
 
   kb->stopThread();

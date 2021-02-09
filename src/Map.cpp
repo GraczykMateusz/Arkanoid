@@ -147,35 +147,37 @@ void Map::setPoints(std::vector<std::shared_ptr<Point>>& points) {
   }
 }
 
-void Map::displayGameOver() const {
+void Map::displayGameOver(unsigned int pointsCount) const {
   clear();
 
   printw("########################################\n");
   printw("#                                      #\n");
   printw("#                                      #\n");
+  printw("#  #######  #######  #      #  ######  #\n");
+  printw("#  #        #     #  ##    ##  #       #\n");
+  printw("#  #        #     #  # #  # #  #       #\n");
+  printw("#  #        #     #  #  ##  #  #       #\n");
+  printw("#  #   ###  #######  #      #  ######  #\n");
+  printw("#  #     #  #     #  #      #  #       #\n");
+  printw("#  #     #  #     #  #      #  #       #\n");
+  printw("#  #     #  #     #  #      #  #       #\n");
+  printw("#  #######  #     #  #      #  ######  #\n");
   printw("#                                      #\n");
   printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
-  printw("#                                      #\n");
+  printw("#  #######  #     #  ######  ########  #\n");
+  printw("#  #     #  #     #  #       #      #  #\n");
+  printw("#  #     #  #     #  #       #      #  #\n");
+  printw("#  #     #  #     #  ######  ########  #\n");
+  printw("#  #     #  #     #  #       #   #     #\n");
+  printw("#  #     #   #   #   #       #    #    #\n");
+  printw("#  #     #    # #    #       #     #   #\n");
+  printw("#  #######     #     ######  #      #  #\n");
   printw("#                                      #\n");
   printw("#                                      #\n");
   printw("########################################\n");
-  printw("Any button to exit!");
+  printw("Your score: ");
+  printw(std::to_string(pointsCount).data());
+  printw("\nAny button to exit!");
 
   refresh();
 }

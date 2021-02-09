@@ -63,7 +63,7 @@ class Map {
     //Methods
     void display();
 
-    void displayGameOver() const;
+    void displayGameOver(unsigned int pointsCount) const;
 
     void startTimer() const;
 
