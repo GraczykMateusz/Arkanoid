@@ -89,6 +89,8 @@ void GameManager::startGame() {
       ball->move(map->getMapFields(), MAP_WIDTH, MAP_HIGHT, isGameOver);
     }
 
+    checkWin();
+
     if(kb->getPressedKey() == NUMERIC_4)
     {
       map->removePlatform(platform->getPlatform(), platform->getPositionX(), platform->getPositionY());
