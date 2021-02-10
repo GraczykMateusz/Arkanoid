@@ -20,6 +20,7 @@ I have been doing it for few weeks and it is now complete. Below you can see an 
 
 *HELP*
 - When ON, it is displayed after the menu.
+
 ![](docs/img/help.png)
 
 --------------------------------------------------------------------------------------------------------------------
